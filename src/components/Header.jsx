@@ -5,10 +5,16 @@ import { RiMenuLine, RiCloseLine } from 'react-icons/ri'; // Using the Remix Ico
 function Header() {
   const [isOpen, setIsOpen] = useState(false);
 
-  const navLinks = [
-    'Home', 'About', 'Academics', 'AI Tutor', 
-    'For Parents', 'For Schools', 'Pricing', 'Resources'
-  ];
+  const navLinks = {
+    'Home': '/',
+    'About': '/about',
+    'Academics': '/academics',
+    'AI Tutor': '/ai-tutor',
+    'For Parents': '/parents',
+    'For Schools': '/for-schools',
+    'Pricing': '/pricing',
+    'Resources': '/resources'
+  };
 
   return (
     <header className="header relative shadow-sm py-3 px-6 md:px-8 bg-white z-50">
@@ -26,10 +32,11 @@ function Header() {
 
         {/* 2. Desktop Navigation (Hidden on Mobile) */}
         <ul className="hidden xl:flex space-x-6 font-medium text-slate-700">
-          {navLinks.map((link) => (
-            <li key={link} className="hover:text-red-600 cursor-pointer transition-colors">
+          {Object.keys(navLinks).map((link) => (
+            <Link key={link} 
+            to={navLinks[link]} className="hover:text-red-600 cursor-pointer transition-colors">
               {link}
-            </li>
+            </Link>
           ))}
         </ul>
 
@@ -55,14 +62,15 @@ function Header() {
       {isOpen && (
         <div className="absolute top-full left-0 w-full bg-white shadow-md border-t border-slate-100 xl:hidden transition-all duration-300 ease-in-out">
           <ul className="flex flex-col p-5 space-y-4 font-semibold text-slate-700">
-            {navLinks.map((link) => (
-              <li 
+            {Object.keys(navLinks).map((link) => (
+              <Link 
                 key={link} 
+                to={navLinks[link]}
                 onClick={() => setIsOpen(false)}
                 className="hover:text-red-600 cursor-pointer border-b border-slate-50 pb-2 last:border-none"
               >
                 {link}
-              </li>
+              </Link>
             ))}
             
             {/* Login button injected right at the bottom of the mobile stack */}

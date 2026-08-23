@@ -1,3 +1,5 @@
+import React from 'react';
+import { Link } from 'react-router-dom';
 import { 
   RiCheckboxCircleLine, 
   RiRobotLine, 
@@ -8,7 +10,7 @@ import {
   RiArrowRightLine  
 } from 'react-icons/ri';
 
-export default function About() {
+export default function AboutUs() {
   return (
     <div className="flex flex-col lg:flex-row items-center gap-12 px-6 py-16 w-full mx-auto overflow-hidden">
       
@@ -76,10 +78,10 @@ export default function About() {
                 Aligned with global standards and designed for real-world success.
               </p>
             </div>
-            <button className="text-red-700 font-bold text-xs sm:text-sm flex items-center gap-1 mt-auto hover:text-red-800 w-fit">
+            <Link to="/curriculum" className="text-red-700 font-bold text-xs sm:text-sm flex items-center gap-1 mt-auto hover:text-red-800 w-fit">
               <span>Learn More</span>
               <RiArrowRightLine className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
-            </button>
+            </Link>
           </div>
 
           {/* Card 4 - Smart Progress Tracking */}

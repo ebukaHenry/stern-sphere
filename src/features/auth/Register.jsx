@@ -1,9 +1,30 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { RiUser3Line, RiMailLine, RiLockLine, RiGoogleFill, RiEyeLine, RiEyeOffLine } from 'react-icons/ri';
+import { useAuth } from '../../context/AuthContext.jsx';
 
 export default function Register() {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errorMsg, setErrorMsg] = useState('');
   const [showPassword, setShowPassword] = useState(false);
+
+  const { registerUser, loginWithGoogle } = useAuth();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setErrorMsg('');
+    try {
+      await registerUser(name, email, password);
+    } catch (error) {
+      setErrorMsg(error.response?.data?.message || 'Registration failed. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <div className="w-full max-w-md mx-auto my-8 p-8 bg-white rounded-2xl shadow-xl border border-slate-100">
@@ -13,7 +34,7 @@ export default function Register() {
         <p className="text-sm text-slate-500 mt-1">Join SternSphere today to start learning</p>
       </div>
 
-      <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
+      <form className="space-y-6" onSubmit={handleSubmit}>
         {/* Full Name Field */}
         <div className="relative group">
           <span className="absolute left-0 bottom-3 text-slate-400 group-focus-within:text-red-600 transition-colors">
@@ -21,6 +42,8 @@ export default function Register() {
           </span>
           <input 
             type="text" 
+            value={name}
+            onChange={(e) => setName(e.target.value)}
             placeholder="Full Name"
             className="w-full pl-7 pb-2 bg-transparent text-slate-800 placeholder-slate-400 border-b border-slate-200 focus:border-red-600 focus:outline-none transition-colors text-sm"
             required
@@ -34,6 +57,8 @@ export default function Register() {
           </span>
           <input 
             type="email" 
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             placeholder="Email Address"
             className="w-full pl-7 pb-2 bg-transparent text-slate-800 placeholder-slate-400 border-b border-slate-200 focus:border-red-600 focus:outline-none transition-colors text-sm"
             required
@@ -48,6 +73,8 @@ export default function Register() {
           <input 
             type={showPassword ? "text" : "password"} 
             placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
             className="w-full pl-7 pr-8 pb-2 bg-transparent text-slate-800 placeholder-slate-400 border-b border-slate-200 focus:border-red-600 focus:outline-none transition-colors text-sm"
             required
           />
@@ -91,6 +118,7 @@ export default function Register() {
 
       {/* Google Button */}
       <button 
+        onClick={loginWithGoogle}
         type="button"
         className="w-full flex items-center justify-center gap-3 border border-slate-200 hover:bg-slate-50 font-semibold text-slate-700 py-3 rounded-lg active:scale-[0.98] transition-all text-sm shadow-sm"
       >
