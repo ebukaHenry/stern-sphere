@@ -1,4 +1,9 @@
 import { 
+  RiYoutubeFill,
+  RiFacebookCircleFill,
+  RiInstagramLine,
+
+
   RiGoogleFill, 
   RiMicrosoftFill, 
   RiVideoChatFill,
@@ -21,11 +26,40 @@ export default function Footer() {
           
           {/* Logo icons flexbox container with auto-wrap on mobile */}
           <div className="flex flex-wrap justify-center items-center gap-6 md:gap-8">
+            <a 
+              href="https://www.youtube.com/@sternfieldschools" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="p-2 rounded-full bg-slate-800 text-slate-400 hover:text-white hover:bg-[#FF0000] transition-all duration-200"
+              aria-label="YouTube"
+            >
+              <RiYoutubeFill className="w-5 h-5" />
+            </a>
+             <a 
+              href="https://www.facebook.com/share/1Etfc7PBgL/" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="p-2 rounded-full bg-slate-800 text-slate-400 hover:text-white hover:bg-red-600 transition-all duration-200"
+              aria-label="Facebook"
+            >
+              <RiFacebookCircleFill className="w-5 h-5" />
+            </a>
+            <a 
+              href="https://www.instagram.com/sternfieldintlschool?utm_source=qr&igsi=Zm9jdXlreTdzaXRt" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="p-2 rounded-full bg-slate-800 text-slate-400 hover:text-white hover:bg-[#E1306C] transition-all duration-200"
+              aria-label="Instagram"
+            >
+              <RiInstagramLine className="w-5 h-5" />
+            </a>
+            {/* Trusted Brand Icons 
             <RiGoogleFill className="w-7 h-7 text-slate-500 hover:text-[#EA4335] transition-colors duration-200" title="Google" />
             <RiMicrosoftFill className="w-7 h-7 text-slate-500 hover:text-[#00A4EF] transition-colors duration-200" title="Microsoft" />
             <RiVideoChatFill className="w-7 h-7 text-slate-500 hover:text-[#2D8CFF] transition-colors duration-200" title="Zoom" />
             <RiVisaLine className="w-9 h-9 text-slate-500 hover:text-[#1A1F71] transition-colors duration-200" title="Visa" />
             <RiMastercardFill className="w-8 h-8 text-slate-500 hover:text-[#EB001B] transition-colors duration-200" title="Mastercard" />
+            */}
           </div>
         </div>
 

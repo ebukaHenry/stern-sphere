@@ -14,6 +14,7 @@ import Parents from './pages/Parents.jsx';
 import Schools from './pages/Schools.jsx';
 import Resources from './pages/Resources.jsx';
 import Pricing from './pages/Pricing.jsx';
+import AITutor from './pages/AITutor.jsx';
 
 // Separate wrapper to ensure AuthProvider resides inside the router context lifecycle
 function AppWithAuthContext() {
@@ -41,6 +42,7 @@ const router = createBrowserRouter([
       {path: 'for-schools', element: <Schools />},
       {path: 'resources', element: <Resources />},
       {path: 'pricing', element: <Pricing />},
+      {path: 'ai-tutor', element: <AITutor />},
     ]
   }
 ]);
