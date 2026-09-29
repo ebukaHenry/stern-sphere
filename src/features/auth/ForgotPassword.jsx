@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { RiMailLine, RiArrowLeftLine, RiCheckboxCircleLine } from 'react-icons/ri';
+import {authService} from "../../utils/api.jsx";
 
 export default function ForgotPassword() {
   const [emailSubmitted, setEmailSubmitted] = useState(false);
@@ -12,6 +13,8 @@ export default function ForgotPassword() {
     if (email) {
       setEmailSubmitted(true);
     }
+    const data = authService.forgotPassword(email);
+    console.log('Password reset requested:', data);
   };
 
   return (

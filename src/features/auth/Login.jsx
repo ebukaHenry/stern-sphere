@@ -2,8 +2,9 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { RiMailLine, RiLockLine, RiGoogleFill, RiEyeLine, RiEyeOffLine } from 'react-icons/ri';
 import { useAuth } from '../../context/AuthContext.jsx';
+//import {authService} from "../../utils/api.jsx";
 
-export default function Login({ switchToRegister }) {
+export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -11,12 +12,16 @@ export default function Login({ switchToRegister }) {
   const [showPassword, setShowPassword] = useState(false);
 
   const { loginUser, loginWithGoogle } = useAuth();
+
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
     setErrorMsg('');
     try {
-      await loginUser(email, password);
+      const data = await loginUser(email, password);
+      //await authService.login(email, password);
+      console.log('Login successful:', data);
     } catch (error) {
       setErrorMsg(error.response?.data?.message || 'Invalid email or password credentials.');
     } finally {
@@ -86,9 +91,10 @@ export default function Login({ switchToRegister }) {
         {/* Submit Button */}
         <button 
           type="submit" 
+          disabled={isSubmitting}
           className="w-full bg-red-600 text-white font-bold py-3 rounded-lg hover:bg-red-700 shadow-md shadow-red-600/10 hover:shadow-red-700/20 active:scale-[0.98] transition-all text-sm"
         >
-          Sign In
+          {isSubmitting ? "Signing In..." : "Sign In"}
         </button>
       </form>
 

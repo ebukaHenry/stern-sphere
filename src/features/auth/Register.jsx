@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { RiUser3Line, RiMailLine, RiLockLine, RiGoogleFill, RiEyeLine, RiEyeOffLine } from 'react-icons/ri';
 import { useAuth } from '../../context/AuthContext.jsx';
+import {authService} from "../../utils/api.jsx";
 
 export default function Register() {
   const [name, setName] = useState('');
@@ -18,7 +19,8 @@ export default function Register() {
     setIsSubmitting(true);
     setErrorMsg('');
     try {
-      await registerUser(name, email, password);
+      const data = await authService.register(name, email, password);
+      console.log('Registration successful:', data);
     } catch (error) {
       setErrorMsg(error.response?.data?.message || 'Registration failed. Please try again.');
     } finally {

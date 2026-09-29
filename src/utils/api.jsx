@@ -2,7 +2,7 @@ import axios from 'axios';
 
 // 1. Centralized Axios instance with default settings
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || 'http://localhost:5000/api', 
+  baseURL: import.meta.env.VITE_API_URL, // Ensure this is set in your .env file 
   headers: {
     'Content-Type': 'application/json',
   },
@@ -41,6 +41,16 @@ export const authService = {
     const response = await api.post('/auth/forgot-password', { email });
     return response.data; // Expecting { success: true, message: "..." }
   }
+};
+
+export const aiTutorService = {
+  // AI Tutor interaction handler
+  interact: async (userInput, sessionId) => { 
+    const response = await api.post('/ai-tutor/chat', { 
+      message: userInput, sessionId,
+     });
+    return response.data; // Expecting { reply: "..." }
+   }
 };
 
 export default api;
