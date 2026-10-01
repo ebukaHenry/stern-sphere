@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { RiUser3Line, RiMailLine, RiLockLine, RiGoogleFill, RiEyeLine, RiEyeOffLine } from 'react-icons/ri';
 import { useAuth } from '../../context/AuthContext.jsx';
-import {authService} from "../../utils/api.jsx";
+//import {authService} from "../../utils/api.jsx";
 
 export default function Register() {
   const [name, setName] = useState('');
@@ -19,7 +19,7 @@ export default function Register() {
     setIsSubmitting(true);
     setErrorMsg('');
     try {
-      const data = await authService.register(name, email, password);
+      const data = await registerUser(name, email, password);
       console.log('Registration successful:', data);
     } catch (error) {
       setErrorMsg(error.response?.data?.message || 'Registration failed. Please try again.');
@@ -37,6 +37,7 @@ export default function Register() {
       </div>
 
       <form className="space-y-6" onSubmit={handleSubmit}>
+        {errorMsg && <div className="p-3 text-xs bg-red-50 text-red-600 rounded-lg">{errorMsg}</div>}
         {/* Full Name Field */}
         <div className="relative group">
           <span className="absolute left-0 bottom-3 text-slate-400 group-focus-within:text-red-600 transition-colors">
@@ -108,7 +109,7 @@ export default function Register() {
           type="submit" 
           className="w-full bg-red-600 text-white font-bold py-3 rounded-lg hover:bg-red-700 shadow-md shadow-red-600/10 hover:shadow-red-700/20 active:scale-[0.98] transition-all text-sm"
         >
-          Create Free Account
+          {isSubmitting ? "Creating Account..." : "Create Free Account"}
         </button>
       </form>
 

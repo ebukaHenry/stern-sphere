@@ -44,10 +44,10 @@ export default function AboutUs() {
                 Personalized AI tutor available 24/7 to help students learn better.
               </p>
             </div>
-            <button className="text-red-700 font-bold text-xs sm:text-sm flex items-center gap-1 mt-auto hover:text-red-800 w-fit">
+            <Link to="/ai-tutor" className="text-red-700 font-bold text-xs sm:text-sm flex items-center gap-1 mt-auto hover:text-red-800 w-fit">
               <span>Learn More</span>
               <RiArrowRightLine className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
-            </button>
+            </Link>
           </div>
 
           {/* Card 2 - Live Classes */}
@@ -146,9 +146,9 @@ export default function AboutUs() {
               </li>
             </ul>
           </div>
-          <button className="w-full sm:w-auto bg-white text-red-700 px-6 py-3 rounded-lg font-bold text-sm shadow-md hover:bg-red-50 active:scale-95 transition-all duration-150">
+          <Link to="/pricing" className="w-full sm:w-auto bg-white text-red-700 px-6 py-3 rounded-lg font-bold text-sm shadow-md hover:bg-red-50 active:scale-95 transition-all duration-150">
             Get Started Today
-          </button>
+          </Link>
         </div>
         
         {/* Floating image adjustment inside the sidebar */}

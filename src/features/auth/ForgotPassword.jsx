@@ -1,20 +1,30 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { RiMailLine, RiArrowLeftLine, RiCheckboxCircleLine } from 'react-icons/ri';
-import {authService} from "../../utils/api.jsx";
+//import {authService} from "../../utils/api.jsx";
+import { useAuth } from '../../context/AuthContext.jsx';
 
 export default function ForgotPassword() {
   const [emailSubmitted, setEmailSubmitted] = useState(false);
   const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');
+  const [errorMsg, setErrorMsg] = useState('');
 
-  const handleSubmit = (e) => {
+  const { forgotPassword } = useAuth();
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     // Your password reset API logic will go here
     if (email) {
       setEmailSubmitted(true);
     }
-    const data = authService.forgotPassword(email);
-    console.log('Password reset requested:', data);
+    try{
+      const data = await forgotPassword(email);
+      setMessage(data.message || 'If this email is registered, a reset link has been sent.');
+    }
+    catch(error){
+      setErrorMsg(error.response?.data?.message || 'Failed to send reset link. Please try again.');
+    }
   };
 
   return (
@@ -32,6 +42,8 @@ export default function ForgotPassword() {
           </div>
 
           <form className="space-y-6" onSubmit={handleSubmit}>
+            {errorMsg && <div className="p-3 text-xs bg-red-50 text-red-600 rounded-lg">{errorMsg}</div>}
+            {message && <div className="p-3 text-xs bg-emerald-50 text-emerald-600 rounded-lg">{message}</div>}
             {/* Email Field */}
             <div className="relative group">
               <span className="absolute left-0 bottom-3 text-slate-400 group-focus-within:text-red-600 transition-colors">

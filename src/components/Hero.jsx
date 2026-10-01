@@ -6,6 +6,7 @@ import {
   RiBrainLine, 
   RiEmotionHappyLine 
 } from 'react-icons/ri';
+import { Link } from 'react-router-dom';
 
 export default function Hero() {
   return (
@@ -35,10 +36,10 @@ export default function Hero() {
         <div className="hero-buttons flex flex-col sm:flex-row gap-3 pt-2 w-full sm:w-auto transform translate-y-4 opacity-0 animate-[slideUp_0.8s_ease-out_0.3s_forwards]">
           
           {/* Main Call To Action Button with arrow slide hover effect */}
-          <button className="group bg-red-600 text-white font-semibold py-3 px-6 rounded-lg shadow-lg shadow-red-600/20 hover:bg-red-700 hover:shadow-red-700/30 transition-all duration-200 flex items-center justify-center gap-2 active:scale-95">
+          <Link to="/ai-tutor" className="group bg-red-600 text-white font-semibold py-3 px-6 rounded-lg shadow-lg shadow-red-600/20 hover:bg-red-700 hover:shadow-red-700/30 transition-all duration-200 flex items-center justify-center gap-2 active:scale-95">
             <span>Start Learning Now</span>
             <RiArrowRightLine className="w-5 h-5 transform group-hover:translate-x-1 transition-transform" />
-          </button>
+          </Link>
 
           {/* Secondary Watch Button with pulsating ripple */}
           <button className="group bg-white text-slate-800 font-semibold py-3 px-6 rounded-lg border border-slate-200 shadow-sm hover:bg-slate-50 transition-all duration-200 flex items-center justify-center gap-2 active:scale-95">

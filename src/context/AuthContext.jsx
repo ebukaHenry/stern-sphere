@@ -39,6 +39,20 @@ export function AuthProvider({ children }) {
     navigate('/');
   };
 
+  // 3.1 The Forgot Password Wrapper Action
+  const forgotPassword = async (email) => {
+    try{
+      const data = await authService.forgotPassword(email);
+      navigate('/login'); // Redirect to login after initiating password reset
+      return data;
+    }
+    catch(error){
+      //console.error('Forgot Password request failed:', error);
+      throw error;
+    }
+     // Expecting { success: true, message: "..." }
+  };
+
   // 4. The Google Single-Sign-On Integration Action
   const loginWithGoogle = async () => {
     try {
@@ -59,7 +73,7 @@ export function AuthProvider({ children }) {
   };
 
   return (
-    <AuthContext.Provider value={{ user, loading, loginUser, registerUser, loginWithGoogle, logoutUser }}>
+    <AuthContext.Provider value={{ user, loading, loginUser, registerUser, loginWithGoogle, logoutUser, forgotPassword }}>
       {!loading && children}
     </AuthContext.Provider>
   );
