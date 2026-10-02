@@ -90,9 +90,15 @@ function Header() {
             
             {/* Login button injected right at the bottom of the mobile stack */}
             <li className="pt-2">
-              <Link to="/login" className="w-full bg-red-600 text-white hover:bg-red-700 py-2.5 px-4 rounded-md font-medium transition-colors">
-                Login
-              </Link>
+              {user ? (
+                <button onClick={handleLogout} className="w-full bg-red-600 text-white hover:bg-red-700 py-2.5 px-4 rounded-md font-medium transition-colors">
+                  Logout
+                </button>
+              ) : (
+                <Link to="/login" className="w-full bg-red-600 text-white hover:bg-red-700 py-2.5 px-4 rounded-md font-medium transition-colors">
+                  Login
+                </Link>
+              )}
             </li>
           </ul>
         </div>
