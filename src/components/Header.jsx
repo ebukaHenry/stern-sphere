@@ -1,9 +1,12 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { RiMenuLine, RiCloseLine } from 'react-icons/ri'; // Using the Remix Icons we set up earlier
+import { useAuth } from '../context/AuthContext';
 
 function Header() {
   const [isOpen, setIsOpen] = useState(false);
+  
+  const { user, logoutUser } = useAuth(); // Access the authenticated user from context
 
   const navLinks = {
     'Home': '/',
@@ -15,6 +18,12 @@ function Header() {
     'Pricing': '/pricing',
     'Resources': '/resources'
   };
+
+
+  const handleLogout = () => {
+    setIsOpen(false); // Close the mobile menu if open
+    logoutUser(); // Call the logout function from AuthContext
+  }
 
   return (
     <header className="header relative shadow-sm py-3 px-6 md:px-8 bg-white z-50">
@@ -42,9 +51,15 @@ function Header() {
 
         {/* 3. Desktop Login Button (Hidden on Mobile) */}
         <div className="header-buttons hidden xl:block">
-          <Link to="/login" className="login-button bg-red-600 text-white hover:bg-red-700 py-1.5 px-5 rounded-md font-medium transition-colors">
+         {user ? (
+           <button onClick={handleLogout} className="login-button bg-red-600 text-white hover:bg-red-700 py-1.5 px-5 rounded-md font-medium transition-colors">
+            Logout
+          </button>
+         ) : (
+           <Link to="/login" className="login-button bg-red-600 text-white hover:bg-red-700 py-1.5 px-5 rounded-md font-medium transition-colors">
             Login
           </Link>
+         )}
         </div>
 
         {/* 4. Mobile Hamburger Button (Hidden on Desktop) */}
