@@ -16,6 +16,8 @@ import Schools from './pages/Schools.jsx';
 import Resources from './pages/Resources.jsx';
 import Pricing from './pages/Pricing.jsx';
 import AITutor from './pages/AITutor.jsx';
+import StudentDashboard from './pages/StudentDashboard.jsx';
+import ProtectedRoute from './components/ProtectedRoute.jsx';
 
 // AuthProvider must be inside the Router context
 // because AuthProvider uses useNavigate()
@@ -46,7 +48,15 @@ const router = createBrowserRouter([
           { path: 'for-schools', element: <Schools /> },
           { path: 'resources', element: <Resources /> },
           { path: 'pricing', element: <Pricing /> },
-          { path: 'ai-tutor', element: <AITutor /> },
+
+          // Protected routes
+          {
+            element: <ProtectedRoute />, // This will check for authentication
+            children: [
+              { path: 'ai-tutor', element: <AITutor /> },
+              { path: 'student-dashboard', element: <StudentDashboard /> },
+            ],
+          },
         ],
       },
     ],

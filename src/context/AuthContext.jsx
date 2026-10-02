@@ -27,7 +27,7 @@ export function AuthProvider({ children }) {
     localStorage.setItem('sternsphere_token', data.token);
     localStorage.setItem('sternsphere_user', JSON.stringify(data.user));
     setUser(data.user);
-    navigate('/'); // Route directly back to Home layout dashboard
+    navigate('/student-dashboard'); // Route directly back to Home layout dashboard
   };
 
   // 3. The Custom Email/Password Register Wrapper Action
@@ -36,7 +36,7 @@ export function AuthProvider({ children }) {
     localStorage.setItem('sternsphere_token', data.token);
     localStorage.setItem('sternsphere_user', JSON.stringify(data.user));
     setUser(data.user);
-    navigate('/');
+    navigate('/student-dashboard');
   };
 
   // 3.1 The Forgot Password Wrapper Action

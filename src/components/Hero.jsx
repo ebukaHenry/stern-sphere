@@ -42,10 +42,10 @@ export default function Hero() {
           </Link>
 
           {/* Secondary Watch Button with pulsating ripple */}
-          <button className="group bg-white text-slate-800 font-semibold py-3 px-6 rounded-lg border border-slate-200 shadow-sm hover:bg-slate-50 transition-all duration-200 flex items-center justify-center gap-2 active:scale-95">
+          <Link to="/student-dashboard" className="group bg-white text-slate-800 font-semibold py-3 px-6 rounded-lg border border-slate-200 shadow-sm hover:bg-slate-50 transition-all duration-200 flex items-center justify-center gap-2 active:scale-95">
             <RiPlayFill className="w-5 h-5 text-red-600 group-hover:scale-110 transition-transform" />
             <span>Watch Video</span>
-          </button>
+          </Link>
           
         </div>
 

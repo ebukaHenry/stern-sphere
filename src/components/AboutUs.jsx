@@ -61,10 +61,10 @@ export default function AboutUs() {
                 Interactive live classes with expert teachers from around the world.
               </p>
             </div>
-            <button className="text-red-700 font-bold text-xs sm:text-sm flex items-center gap-1 mt-auto hover:text-red-800 w-fit">
+            <Link to="/student-dashboard" className="text-red-700 font-bold text-xs sm:text-sm flex items-center gap-1 mt-auto hover:text-red-800 w-fit">
               <span>Learn More</span>
               <RiArrowRightLine className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
-            </button>
+            </Link>
           </div>
 
           {/* Card 3 - World Class Curriculum */}
